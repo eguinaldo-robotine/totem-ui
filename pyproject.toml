@@ -1,0 +1,69 @@
+[project]
+name = "totem-ui"
+version = "0.1.0"
+description = "Interface gráfica usando Qt6.10 e QML"
+requires-python = ">=3.10"
+dependencies = [
+    "PyQt6>=6.10.0",
+    "PyQt6-Qt6>=6.10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = [
+    "src",
+    "src.models",
+    "src.repository",
+    "src.service",
+    "src.controller",
+]
+
+[tool.setuptools.package-data]
+"*" = ["*.qml", "*.png", "*.jpg", "*.svg"]
+
+[project.scripts]
+totem-ui = "src.main:main"
+setup-env = "src.setup:main"
+
+[tool.totem-ui.setup]
+description = "Comandos para configurar o ambiente de desenvolvimento"
+commands = [
+    "# Criar ambiente virtual:",
+    "python3 -m venv venv",
+    "",
+    "# Ativar ambiente virtual (Linux/Mac):",
+    "source venv/bin/activate",
+    "",
+    "# Ativar ambiente virtual (Windows):",
+    "venv\\Scripts\\activate",
+    "",
+    "# Instalar dependências:",
+    "pip install -e .",
+    "",
+    "# Ou usar o script de setup:",
+    "python src/setup.py",
+    "",
+    "# Ou usar os scripts shell:",
+    "./setup_env.sh  # Linux/Mac",
+    "setup_env.bat   # Windows"
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
