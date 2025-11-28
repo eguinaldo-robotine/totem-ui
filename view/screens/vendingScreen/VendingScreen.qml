@@ -26,16 +26,14 @@ Page {
            Rectangle {
                 id: headerSlider
                 Layout.fillWidth: true
-                Layout.preferredHeight: style.headerHeight
-                Layout.maximumHeight: style.headerHeight
+                Layout.preferredHeight: style.percentHeight(0.12)
                 color: style.header
             }
 
             Rectangle {
                 id: userinfo
                 Layout.fillWidth: true
-                Layout.preferredHeight: style.headerHeight
-                Layout.maximumHeight: style.headerHeight
+                Layout.preferredHeight: style.percentHeight(0.12)
                 color: style.userInfo
             }
 
@@ -47,33 +45,45 @@ Page {
 
                 Rectangle {
                     id: category
-                    Layout.preferredWidth: style.categoryWidth
+                    Layout.preferredWidth: style.percentWidth(0.30)
                     Layout.fillHeight: true
                     color: style.secondary
                 }
-
-                GridView {
-                    id: products
+                
+                ColumnLayout {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.leftMargin: style.paddingMedium
-                    Layout.rightMargin: style.paddingMedium
-                    clip: true
-                    interactive: true
-                    cellWidth: style.cellSize
-                    cellHeight: style.cellSize
+                    spacing: 0
 
-                    model: 13
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        color: style.primary
+                    }
 
-                    delegate: Item {
-                        width: products.cellWidth
-                        height: products.cellHeight
+                    GridView {
+                        id: products
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.leftMargin: style.paddingMedium
+                        Layout.rightMargin: style.paddingMedium
+                        Layout.topMargin: style.paddingMedium
+                        clip: true
+                        interactive: true
+                        cellWidth: style.percentWidth(0.33)
+                        cellHeight: style.percentWidth(0.33)
+                        model: 13
 
-                        Rectangle {
-                            anchors.fill: parent
-                            anchors.margins: style.cellMargin
-                            radius: style.radius
-                            color: style.primary
+                        delegate: Item {
+                            width: products.cellWidth
+                            height: products.cellHeight
+
+                            Rectangle {
+                                anchors.fill: parent
+                                anchors.margins: style.cellMargin
+                                radius: style.radius
+                                color: style.primary
+                            }
                         }
                     }
                 }
@@ -82,7 +92,7 @@ Page {
             Rectangle {
                 id: cart
                 Layout.fillWidth: true
-                Layout.preferredHeight: style.footerHeight
+                Layout.preferredHeight: style.percentHeight(0.10)
                 Layout.maximumHeight: style.footerHeight
                 color: style.accent
             }
