@@ -5,9 +5,9 @@ from pathlib import Path
 from PyQt6.QtGui import QGuiApplication
 from PyQt6.QtQml import QQmlApplicationEngine, qmlRegisterType
 
-from src.controller.app_controller import AppController
-from src.controller.screen_manager_controller import ScreenManagerController
-from src.controller.splash_controller import SplashController
+from src.controller.app.app_controller import AppController
+from src.controller.slider.sliderController import SliderController
+from src.controller.screenManager.ScreenManagerController import ScreenManagerController as ScreenStackController
 
 
 def main():
@@ -18,28 +18,26 @@ def main():
     
     # Obtém os diretórios base
     project_root = Path(__file__).parent.parent
-    qml_base_path = project_root / "qml"
+    view_base_path = project_root / "view"
+    screens_path = view_base_path / "screens"
     assets_path = project_root / "assets" / "splash-images"
     
     # Registra os controllers no QML
     qmlRegisterType(AppController, "TotemUI", 1, 0, "AppController")
-    qmlRegisterType(ScreenManagerController, "TotemUI", 1, 0, "ScreenManagerController")
-    qmlRegisterType(SplashController, "TotemUI", 1, 0, "SplashController")
+    qmlRegisterType(SliderController, "TotemUI", 1, 0, "SliderController")
     
     # Cria instâncias dos controllers e registra como contexto
     app_controller = AppController()
-    screen_manager = ScreenManagerController(qml_base_path)
-    splash_controller = SplashController(assets_path)
+    slider_controller = SliderController(assets_path)
+    screen_stack_controller = ScreenStackController()
     
     engine.rootContext().setContextProperty("appController", app_controller)
-    engine.rootContext().setContextProperty("screenManager", screen_manager)
-    engine.rootContext().setContextProperty("splashController", splash_controller)
+    engine.rootContext().setContextProperty("sliderController", slider_controller)
+    engine.rootContext().setContextProperty("screenStackController", screen_stack_controller)
     
-    # Obtém o diretório do arquivo atual (ApplicationWindow principal)
-    qml_file = qml_base_path / "pages" / "app.qml"
+    qml_file = screens_path / "app.qml"
     
-    # Inicializa o screen manager com a página de splash
-    screen_manager.initialize("splash", "Splash Screen")
+    screen_stack_controller.pushPage("slider")
     
     if not qml_file.exists():
         print(f"Erro: Arquivo QML não encontrado em {qml_file}")

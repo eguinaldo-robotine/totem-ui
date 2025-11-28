@@ -17,11 +17,19 @@ Este é um projeto de interface gráfica usando Python, Qt 6.10 e QML.
 - `service/`: Lógica de negócio
 - `controller/`: Conexão QML ↔ Lógica (herdam de QObject)
 
+*antes de criar um novo arqivo model, repository, service,ou controler, crie uma pasta para ele ficar dentro exemplo:
+
+models/users/userController.py*
+
 ### QML (qml/)
 - `components/`: Componentes reutilizáveis
-- `pages/`: Páginas principais da aplicação
+- `screens/`: Páginas principais da aplicação
 - `dialogs/`: Diálogos e modais
 - `styles/`: Temas e estilos (Theme.qml)
+*antes de criar um novo arqivo model, repository, service,ou controler, crie uma pasta para ele ficar dentro exemplo:
+screens/splashScreen/SplashScreen.qml" o nome do arquivo dece ser em  Pascal case e o nome da pasta em Camel case*
+
+quando criar um componente reutilizavel verifique as pastas já existentes e veja se ele se encaixa em alguma delas, caso contrario me pergunte o nome do arquivo e onde deve ficar.
 
 ## Convenções de Código
 
@@ -53,23 +61,6 @@ Este é um projeto de interface gráfica usando Python, Qt 6.10 e QML.
 - Valide entradas de usuário
 - Use logging em vez de print para depuração em produção
 
-## Dependências do Sistema
-- O projeto requer dependências do sistema (libxcb-cursor0, etc.)
-- Sempre verifique se as dependências estão instaladas antes de executar
-- Use o script setup_env.sh para instalação automática
-
-## Comandos Úteis
-- `python src/main.py`: Executa a aplicação
-- `./setup_env.sh`: Configura ambiente e instala dependências
-- `pip install -e .`: Instala o projeto em modo desenvolvimento
-
-## Arquivos Importantes
-- `src/main.py`: Ponto de entrada da aplicação
-- `src/controller/app_controller.py`: Controller principal
-- `qml/pages/main.qml`: Página principal QML
-- `qml/styles/Theme.qml`: Tema e estilos
-- `pyproject.toml`: Configuração e dependências do projeto
-- `setup_env.sh`: Script de configuração do ambiente
 
 ## Padrões da Arquitetura
 

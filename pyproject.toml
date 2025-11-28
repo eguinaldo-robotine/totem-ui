@@ -20,13 +20,9 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = [
-    "src",
-    "src.models",
-    "src.repository",
-    "src.service",
-    "src.controller",
-]
+# Usa namespace packages (PEP 420) - não requer __init__.py
+# O setuptools automaticamente detecta namespaces quando não há __init__.py
+packages = { find = {} }
 
 [tool.setuptools.package-data]
 "*" = ["*.qml", "*.png", "*.jpg", "*.svg"]
