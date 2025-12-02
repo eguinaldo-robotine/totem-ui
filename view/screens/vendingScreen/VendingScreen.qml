@@ -26,28 +26,65 @@ Page {
            Rectangle {
                 id: headerSlider
                 Layout.fillWidth: true
-                Layout.preferredHeight: style.percentHeight(0.12)
+                Layout.preferredHeight: style.percentHeight(0.15)
                 color: style.header
             }
 
-            Rectangle {
+            Item {
                 id: userinfo
                 Layout.fillWidth: true
                 Layout.preferredHeight: style.percentHeight(0.12)
-                color: style.userInfo
-            }
 
+                RowLayout {
+                    anchors.fill: parent
+                    ColumnLayout {
+                        Label {
+                        // margin left 30
+                            Layout.leftMargin: style.marginMedium
+                            text: "Oi, Fulano"
+                            color: "Black"
+                            font.pixelSize: 36
+                            font.bold: true
+                            font.family: "Roboto"
+                            horizontalAlignment: Text.AlignLeft
+                        }
+                        Label {
+                            Layout.leftMargin: 30
+                            text: "pontos: 100"
+                            color: "Black"
+                            font.pixelSize: 12
+                            font.bold: true
+                            font.family: "Roboto"
+                            horizontalAlignment: Text.AlignLeft
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    Rectangle {
+                        Layout.rightMargin: 30
+                        radius: 10
+                        Layout.preferredWidth: 200
+                        Layout.preferredHeight: 60
+                        color: "Red"
+                    }
+
+                }   
+            }
 
             RowLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 spacing: 0
 
-                Rectangle {
-                    id: category
-                    Layout.preferredWidth: style.percentWidth(0.30)
-                    Layout.fillHeight: true
-                    color: style.secondary
+                CategoryList {
+                    id: categoryList
+                    Layout.preferredWidth: style.percentWidth(0.23)
+                    Layout.preferredHeight: style.percentHeight(0.45)
+                    Layout.alignment: Qt.AlignTop
+                    Layout.leftMargin: style.marginMedium
                 }
                 
                 ColumnLayout {
@@ -55,10 +92,14 @@ Page {
                     Layout.fillHeight: true
                     spacing: 0
 
-                    Rectangle {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        color: style.primary
+                    Label {
+                        Layout.leftMargin: style.marginMedium
+                        text: "Categoria"
+                        color: "Black"
+                        font.pixelSize: 32
+                        font.bold: true
+                        font.family: style.primaryFont
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     GridView {
@@ -70,8 +111,8 @@ Page {
                         Layout.topMargin: style.paddingMedium
                         clip: true
                         interactive: true
-                        cellWidth: style.percentWidth(0.33)
-                        cellHeight: style.percentWidth(0.33)
+                        cellWidth: style.percentWidth(0.35)
+                        cellHeight: style.percentWidth(0.35)
                         model: 13
 
                         delegate: Item {
@@ -80,7 +121,7 @@ Page {
 
                             Rectangle {
                                 anchors.fill: parent
-                                anchors.margins: style.cellMargin
+                                anchors.margins: style.marginMedium
                                 radius: style.radius
                                 color: style.primary
                             }

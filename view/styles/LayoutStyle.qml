@@ -6,11 +6,11 @@ QtObject {
     // Referência ao componente pai (será definida ao instanciar)
     property Item root: null
     
-    readonly property color primary: "#298b55"
-    readonly property color secondary: "#362cb6"
-    readonly property color background: "#2e2e2e"
-    readonly property color header: "#ff0000"
-    readonly property color accent: "#bcda36"
+    readonly property color primary: '#e4e4e4'
+    readonly property color secondary: '#c0c0c0'
+    readonly property color background: '#ffffff'
+    readonly property color header: '#cfcfcf'
+    readonly property color accent: '#414141'
     readonly property color text: "#ffffff"
     readonly property color userInfo: "#797888"
     
@@ -21,6 +21,10 @@ QtObject {
     readonly property int paddingSmall: root ? root.width * 0.01 : 10
     readonly property int paddingMedium: root ? root.width * 0.02 : 20
     readonly property int paddingLarge: root ? root.width * 0.04 : 40
+
+    readonly property int marginSmall: root ? root.width * 0.01 : 10
+    readonly property int marginMedium: root ? root.width * 0.02 : 20
+    readonly property int marginLarge: root ? root.width * 0.04 : 40
     
     function percentWidth(p) { 
         return root ? root.width * p : 0 
@@ -36,13 +40,22 @@ QtObject {
     
     readonly property int radius: 12
     
-    // Alturas padrão
     readonly property int headerHeight: 100
     readonly property int footerHeight: 100
     readonly property int categoryWidth: 180
     
-    // Tamanhos de célula do grid
     readonly property int cellSize: 170
     readonly property int cellMargin: 5
-}
 
+    readonly property string fontFamily: "Roboto"
+    readonly property string fontFamilyBold: "Roboto-Bold"
+    readonly property string fontFamilyLight: "Roboto-Light"
+    readonly property string fontFamilyMedium: "Roboto-Medium"
+    readonly property string fontFamilyRegular: "Roboto-Regular"
+    readonly property string fontFamilyThin: "Roboto-Thin"
+    readonly property string fontFamilyUltraLight: "Roboto-UltraLight"
+    readonly property string fontFamilyBlack: "Roboto-Black"
+
+    readonly property string primaryFont: "Texas Tango BOLD PERSONAL USE"
+
+}

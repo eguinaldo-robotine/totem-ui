@@ -47,3 +47,15 @@ ui_*.h
 *.pro.user
 *.pro.user.*
 
+# Logs
+logs/
+*.log
+
+# Cursor
+.cursorrules
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+

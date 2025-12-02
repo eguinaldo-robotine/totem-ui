@@ -8,25 +8,26 @@ from PyQt6.QtQml import QQmlApplicationEngine, qmlRegisterType
 from src.controller.app.app_controller import AppController
 from src.controller.slider.sliderController import SliderController
 from src.controller.screenManager.ScreenManagerController import ScreenManagerController as ScreenStackController
+from src.utils.fonts import load_font
 
 
 def main():
-    """Função principal que inicia a aplicação"""
     app = QGuiApplication(sys.argv)
     
+    project_root = Path(__file__).parent.parent
+
     engine = QQmlApplicationEngine()
     
-    # Obtém os diretórios base
-    project_root = Path(__file__).parent.parent
     view_base_path = project_root / "view"
     screens_path = view_base_path / "screens"
     assets_path = project_root / "assets" / "splash-images"
+    qml_file = screens_path / "app.qml"
     
-    # Registra os controllers no QML
+    load_font("assets/fonts/TEXAT BOLD PERSONAL USE___.otf", project_root)
+    
     qmlRegisterType(AppController, "TotemUI", 1, 0, "AppController")
     qmlRegisterType(SliderController, "TotemUI", 1, 0, "SliderController")
     
-    # Cria instâncias dos controllers e registra como contexto
     app_controller = AppController()
     slider_controller = SliderController(assets_path)
     screen_stack_controller = ScreenStackController()
@@ -35,7 +36,6 @@ def main():
     engine.rootContext().setContextProperty("sliderController", slider_controller)
     engine.rootContext().setContextProperty("screenStackController", screen_stack_controller)
     
-    qml_file = screens_path / "app.qml"
     
     screen_stack_controller.pushPage("slider")
     

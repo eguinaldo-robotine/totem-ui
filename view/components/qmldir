@@ -1,0 +1,6 @@
+module Components
+
+# Mapear tipos QML deste módulo
+CategoryList  lists/CategoryList.qml
+
+
